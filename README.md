@@ -211,12 +211,14 @@ Todos los controladores usan `try/catch` y delegan en `handleError`, que convier
 La carpeta [`thunder-client/`](thunder-client/) tiene la colección exportada y un environment:
 
 - `thunder-collection_Turnero API.json`: 38 requests, con los casos exitosos y los de error (400, 401, 403, 404). Cada request tiene un test que verifica el código de estado esperado.
-- `thunder-environment_Turnero local.json`: variables `baseUrl`, `adminEmail`, `adminPassword`, `token`, `adminToken` y `turnoId`.
+- `thunder-environment_Turnero local.json`: variables `adminEmail`, `adminPassword`, `userEmail`, `token`, `adminToken` y `turnoId`.
+
+Las requests apuntan a `http://localhost:3000`. Si usás otro `PORT`, cambiá la URL en la colección.
 
 Cómo usarla:
 
 1. En Thunder Client, **Collections → Import** y elegí el archivo de la colección. Después, **Env → Import** y elegí el environment.
-2. Activá el environment **Turnero local** y completá `adminPassword` (y `adminEmail` si usaste otro en el seed).
+2. Activá el environment **Turnero local** (Set Active) y completá `adminPassword` (y `adminEmail` si usaste otro en el seed).
 3. Corré `pnpm seed:admin` y `pnpm dev`.
 4. Ejecutá la colección completa (**Run All**) en orden. Las requests se encadenan:
    - el registro usa un email aleatorio y lo guarda en `userEmail`;

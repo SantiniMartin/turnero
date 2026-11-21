@@ -1,20 +1,10 @@
 {
   "clientName": "Thunder Client",
   "environmentName": "Turnero local",
-  "dateExported": "2026-11-21T19:57:28.140Z",
+  "dateExported": "2026-11-21T20:18:19.094Z",
   "version": "1.1",
-  "ref": "481c59fe-0b30-41ec-8165-ae8c05047174",
-  "_id": "18adb3dd-71b2-4e12-8c1c-2da7f9fbb021",
-  "name": "Turnero local",
-  "default": false,
-  "sortNum": 10000,
-  "created": "2026-11-21T19:57:28.140Z",
-  "modified": "2026-11-21T19:57:28.140Z",
-  "data": [
-    {
-      "name": "baseUrl",
-      "value": "http://localhost:3000"
-    },
+  "folder": "",
+  "variables": [
     {
       "name": "adminEmail",
       "value": "admin@turnos.com"
