@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import dns from 'node:dns';
 import mongoose from 'mongoose';
 import { app } from './app';
