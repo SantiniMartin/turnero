@@ -1,0 +1,1016 @@
+{
+  "clientName": "Thunder Client",
+  "collectionName": "Turnero API",
+  "collectionId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+  "dateExported": "2026-11-21T19:57:28.140Z",
+  "version": "1.2",
+  "folders": [
+    {
+      "_id": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Auth",
+      "containerId": "",
+      "created": "2026-11-21T19:57:28.140Z",
+      "sortNum": 10000
+    },
+    {
+      "_id": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Turnos",
+      "containerId": "",
+      "created": "2026-11-21T19:57:28.140Z",
+      "sortNum": 20000
+    }
+  ],
+  "requests": [
+    {
+      "_id": "2a6fbc47-d978-4e4e-be18-4e7e760d8d41",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "",
+      "name": "Health 200",
+      "url": "{{baseUrl}}/api/health",
+      "method": "GET",
+      "sortNum": 10000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "8f1e6461-5a4e-4995-a647-73bd463323a4",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Register 201",
+      "url": "{{baseUrl}}/api/auth/register",
+      "method": "POST",
+      "sortNum": 20000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"Paciente Demo\",\n  \"email\": \"{{#email}}\",\n  \"password\": \"secreta123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.email",
+          "action": "setto",
+          "value": "{{userEmail}}"
+        }
+      ]
+    },
+    {
+      "_id": "bb73c9c0-b7c0-4c73-86f7-0e053623a779",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Register 400 - email duplicado",
+      "url": "{{baseUrl}}/api/auth/register",
+      "method": "POST",
+      "sortNum": 30000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"Paciente Demo\",\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"secreta123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "823bfb6e-1f4b-4273-864a-2f638b98cd41",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Register 400 - datos inválidos",
+      "url": "{{baseUrl}}/api/auth/register",
+      "method": "POST",
+      "sortNum": 40000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nombre\": \"P\",\n  \"email\": \"no-es-email\",\n  \"password\": \"123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "9de30e6f-ebba-4fbd-8b58-d655b9afcd34",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Login 400 - faltan datos",
+      "url": "{{baseUrl}}/api/auth/login",
+      "method": "POST",
+      "sortNum": 50000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"{{userEmail}}\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "81a742b1-9df7-402e-afe6-69588bcbfb6f",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Login 401 - contraseña incorrecta",
+      "url": "{{baseUrl}}/api/auth/login",
+      "method": "POST",
+      "sortNum": 60000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"incorrecta\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "2f823e51-5314-402f-9064-ecd965d35083",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Login 200 - usuario",
+      "url": "{{baseUrl}}/api/auth/login",
+      "method": "POST",
+      "sortNum": 70000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"{{userEmail}}\",\n  \"password\": \"secreta123\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.token",
+          "action": "setto",
+          "value": "{{token}}"
+        }
+      ]
+    },
+    {
+      "_id": "e060b921-a02f-4cd6-a31e-1899de536d1b",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Login 200 - admin",
+      "url": "{{baseUrl}}/api/auth/login",
+      "method": "POST",
+      "sortNum": 80000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"email\": \"{{adminEmail}}\",\n  \"password\": \"{{adminPassword}}\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json.token",
+          "action": "setto",
+          "value": "{{adminToken}}"
+        }
+      ]
+    },
+    {
+      "_id": "b925d000-fa6c-4b95-9956-8c2a41815df6",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Me 200",
+      "url": "{{baseUrl}}/api/auth/me",
+      "method": "GET",
+      "sortNum": 90000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "2a57cd0a-8ff7-46ec-b319-9284e1164656",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "73b5b41c-ac70-4edb-917d-913851b28db0",
+      "name": "Me 401 - sin token",
+      "url": "{{baseUrl}}/api/auth/me",
+      "method": "GET",
+      "sortNum": 100000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "98175b3f-e913-4b9d-b2e6-ff966d0c0722",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 201",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 110000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Juan Pérez\",\n  \"especialidad\": \"cardiologia\",\n  \"fecha\": \"2027-03-02T10:00:00-03:00\",\n  \"observaciones\": \"Control anual\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "201"
+        },
+        {
+          "type": "set-env-var",
+          "custom": "json._id",
+          "action": "setto",
+          "value": "{{turnoId}}"
+        }
+      ]
+    },
+    {
+      "_id": "38866ed5-0485-465d-8bbf-aabc81fe5f12",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 401 - sin token",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 120000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Juan Pérez\",\n  \"especialidad\": \"cardiologia\",\n  \"fecha\": \"2027-03-02T10:00:00-03:00\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "9621d022-1d1b-4e9e-9d1b-2d5ca863ad6c",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 401 - token inválido",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 130000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Juan Pérez\",\n  \"especialidad\": \"cardiologia\",\n  \"fecha\": \"2027-03-02T10:00:00-03:00\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{tokenInvalido}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "9ce8a3f1-96d6-4b99-9faa-ccc2b4d3df03",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 400 - horario ocupado",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 140000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Ana Gómez\",\n  \"especialidad\": \"cardiologia\",\n  \"fecha\": \"2027-03-02T10:00:00-03:00\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "d7fad90a-ddfe-40e8-8956-f7df57882073",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 400 - fecha pasada",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 150000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Ana Gómez\",\n  \"especialidad\": \"pediatria\",\n  \"fecha\": \"2025-01-06T10:00:00-03:00\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "65d22869-5906-47ac-bb22-15cba9633782",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 400 - fin de semana",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 160000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Ana Gómez\",\n  \"especialidad\": \"pediatria\",\n  \"fecha\": \"2027-03-06T10:00:00-03:00\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "f39da3a8-4d92-480c-8f81-fe71dd37d520",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 400 - fuera de horario",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 170000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Ana Gómez\",\n  \"especialidad\": \"pediatria\",\n  \"fecha\": \"2027-03-02T21:00:00-03:00\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "76015faa-aebc-46ef-9d59-46ac1b5cb71c",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 400 - especialidad inválida",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 180000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Ana Gómez\",\n  \"especialidad\": \"magia\",\n  \"fecha\": \"2027-03-02T10:00:00-03:00\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "8048d0a7-63ca-47ba-a2a9-310bcfe9514c",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Crear turno 400 - JSON mal formado",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "POST",
+      "sortNum": 190000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\"paciente\": ",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "2fcb96ef-b7e8-41f7-b8c4-59c208b59365",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Listar turnos 200",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "GET",
+      "sortNum": 200000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "049e380f-1528-4cfc-94ac-79e64bae9cc7",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Listar turnos 200 - filtros",
+      "url": "{{baseUrl}}/api/turnos?especialidad=cardiologia&estado=pendiente&desde=2027-01-01&hasta=2027-12-31",
+      "method": "GET",
+      "sortNum": 210000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "7376cc24-74af-4a71-b61c-68545ba9494b",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Listar turnos 400 - filtro inválido",
+      "url": "{{baseUrl}}/api/turnos?estado=inexistente",
+      "method": "GET",
+      "sortNum": 220000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "0842ef9b-fca5-44f6-9416-e2a406a42241",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Listar turnos 401 - sin token",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "GET",
+      "sortNum": 230000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "4ecd58eb-3966-45fb-9493-6da1baef15be",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Listar turnos 200 - admin ve todos",
+      "url": "{{baseUrl}}/api/turnos",
+      "method": "GET",
+      "sortNum": 240000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{adminToken}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "4610759c-1df0-4aa4-90bd-58ea614071e6",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Obtener turno 200",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "GET",
+      "sortNum": 250000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "4d3be011-8043-4a8d-aa5c-5ad3396fdfd5",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Obtener turno 400 - id inválido",
+      "url": "{{baseUrl}}/api/turnos/123",
+      "method": "GET",
+      "sortNum": 260000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "655af5be-e191-4f49-b697-30b1ca94edf0",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Obtener turno 404",
+      "url": "{{baseUrl}}/api/turnos/64b000000000000000000000",
+      "method": "GET",
+      "sortNum": 270000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "8ddba6ed-e9aa-408d-a0d2-8bb9464b5856",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Actualizar turno 200",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "PUT",
+      "sortNum": 280000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"fecha\": \"2027-03-02T11:30:00-03:00\",\n  \"observaciones\": \"Traer estudios previos\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "cbac92c6-b968-41cf-b15c-b9ae5e5f3799",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Actualizar turno 400 - body vacío",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "PUT",
+      "sortNum": 290000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "400"
+        }
+      ]
+    },
+    {
+      "_id": "952703f7-74ce-4cbd-b7b4-7f890bec2438",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Actualizar turno 401 - sin token",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "PUT",
+      "sortNum": 300000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Otro\"\n}",
+        "form": []
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "38beacf7-2cd0-4e21-86d1-a7affc388bcf",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Actualizar turno 404",
+      "url": "{{baseUrl}}/api/turnos/64b000000000000000000000",
+      "method": "PUT",
+      "sortNum": 310000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"paciente\": \"Otro\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "b08865c7-d526-4672-8c5d-a48c7eef860c",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Actualizar turno 403 - usuario no puede confirmar",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "PUT",
+      "sortNum": 320000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"estado\": \"confirmado\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "403"
+        }
+      ]
+    },
+    {
+      "_id": "9eefbfb6-0514-4847-a7d6-4e3dcf7e8175",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Actualizar turno 200 - admin confirma",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "PUT",
+      "sortNum": 330000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"estado\": \"confirmado\"\n}",
+        "form": []
+      },
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{adminToken}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "29d94f72-ad5f-4d75-9b4b-ceb042d3dfe8",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Eliminar turno 401 - sin token",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "DELETE",
+      "sortNum": 340000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "401"
+        }
+      ]
+    },
+    {
+      "_id": "9bedb324-7ff4-4967-baf6-436f17a14c04",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Eliminar turno 403 - no es admin",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "DELETE",
+      "sortNum": 350000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{token}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "403"
+        }
+      ]
+    },
+    {
+      "_id": "1d3433cb-dcdd-4280-928b-454566ef0f76",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Eliminar turno 200 - admin",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "DELETE",
+      "sortNum": 360000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{adminToken}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "_id": "4d284d8e-8555-4e0e-9e86-4e2cbd176ba6",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "f2603158-2d8e-4641-9dbd-7e0fcb867664",
+      "name": "Eliminar turno 404",
+      "url": "{{baseUrl}}/api/turnos/{{turnoId}}",
+      "method": "DELETE",
+      "sortNum": 370000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{adminToken}}"
+      },
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    },
+    {
+      "_id": "e9b65a72-813a-4d90-a4d3-509b4d70a2ce",
+      "colId": "e48c6a9c-ea99-4d9d-9739-b82fc2237078",
+      "containerId": "",
+      "name": "Ruta inexistente 404",
+      "url": "{{baseUrl}}/api/no-existe",
+      "method": "GET",
+      "sortNum": 380000,
+      "created": "2026-11-21T19:57:28.140Z",
+      "modified": "2026-11-21T19:57:28.140Z",
+      "headers": [],
+      "tests": [
+        {
+          "type": "res-code",
+          "custom": "",
+          "action": "equal",
+          "value": "404"
+        }
+      ]
+    }
+  ],
+  "ref": "c6427fa2-26b0-43ed-a577-9bf8f27845db"
+}
